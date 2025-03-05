@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElectroLux – Product Detail</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Include the header -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">ElectroLux</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+      </nav>
+      <div class="header-utilities">
+        <a href="wishlist.html"><i class="far fa-heart"></i></a>
+        <a href="cart.html">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Product Detail Section -->
+  <section class="product-detail" id="product">
+    <div class="container">
+      <div class="detail-container">
+        <div class="detail-img">
+          <img id="detail-image" src="" alt="Product Detail">
+        </div>
+        <div class="detail-info">
+          <h1 id="detail-name">Product Name</h1>
+          <p class="price" id="detail-price">$0.00</p>
+          <p class="description" id="detail-description">Product details will appear here.</p>
+          <div class="btn-group">
+            <button class="btn add-cart" onclick="handleBuy()">Add to Cart</button>
+            <button class="btn buy-now" onclick="buyNow()">Buy Now</button>
+            <i class="far fa-heart wishlist-icon" id="wishlist-icon" onclick="toggleWishlist()"></i>
+          </div>
+          <!-- Product Media Section -->
+          <div class="product-media">
+            <h2>Product Media</h2>
+            <div class="media-container">
+              <div class="media-item">
+                <img src="https://source.unsplash.com/800x600/?electronics,detail" alt="High Quality Image">
+              </div>
+              <div class="media-item">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div class="media-item">
+                <img src="https://via.placeholder.com/800x600?text=360°+View" alt="360 View">
+              </div>
+            </div>
+          </div>
+          <!-- Reviews & Ratings Section -->
+          <div class="reviews">
+            <h2>Customer Reviews</h2>
+            <div class="review">
+              <div class="review-header">
+                <span class="name">Jane Doe</span>
+                <span class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </span>
+              </div>
+              <div class="review-body">
+                Great product! The performance is amazing and the build quality is top-notch.
+              </div>
+            </div>
+            <div class="review">
+              <div class="review-header">
+                <span class="name">John Smith</span>
+                <span class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <i class="far fa-star"></i>
+                </span>
+              </div>
+              <div class="review-body">
+                Satisfied with the purchase. It exceeded my expectations in terms of performance.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Recommended Products Section -->
+      <div class="recommended" id="recommended">
+        <div class="container">
+          <h2>Recommended For You</h2>
+          <div class="recommended-grid" id="recommended-products">
+            <!-- Recommended products will be loaded via JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script src="js/script.js"></script>
+</body>
+</html>

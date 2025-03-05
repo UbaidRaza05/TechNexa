@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElectroLux – Shop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Include the same header as in index.html -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">ElectroLux</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+      </nav>
+      <div class="header-utilities">
+        <a href="wishlist.html"><i class="far fa-heart"></i></a>
+        <a href="cart.html">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Shop Section -->
+  <section class="shop-section" id="shop">
+    <div class="container">
+      <h2>All Products</h2>
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+      <div class="shop-grid" id="shop-products">
+        <!-- Shop products will be loaded via JavaScript -->
+      </div>
+    </div>
+  </section>
+  
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
