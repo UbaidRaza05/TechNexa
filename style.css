@@ -1,0 +1,178 @@
+/* css/style.css */
+/* Custom CSS overrides and additional styles */
+
+/* Dark mode adjustments */
+body.dark {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+body.dark .bg-lightbg {
+  background-color: #2d2d2d;
+}
+
+body.dark .bg-white {
+  background-color: #1e1e1e;
+}
+
+body.dark .text-accent {
+  color: #f1f1f1;
+}
+
+body.dark .bg-gray-50,
+body.dark .bg-gray-100 {
+  background-color: #2d2d2d;
+}
+
+body.dark .text-gray-600,
+body.dark .text-gray-700 {
+  color: #b0b0b0;
+}
+
+body.dark .border-gray-200,
+body.dark .border-gray-300 {
+  border-color: #444;
+}
+
+/* Ensure mobile overflow is hidden */
+body {
+  overflow-x: hidden;
+}
+
+/* Better responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improved responsive padding for smaller screens */
+@media (max-width: 640px) {
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile menu enhancements */
+#navListMobile {
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+/* Swiper testimonial customizations */
+.swiper-slide {
+  transition: transform 0.3s ease;
+}
+
+.swiper-slide:hover {
+  transform: translateY(-5px);
+}
+
+/* Product image hover effect */
+.product-image {
+  transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+  transform: scale(1.05);
+}
+
+/* Quantity input styling */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Button animations */
+button {
+  transition: all 0.3s ease;
+}
+
+/* Focus states for accessibility */
+a:focus, button:focus, input:focus {
+  outline: 2px solid #ff5722;
+  outline-offset: 2px;
+}
+
+/* Improved responsive iframe */
+.responsive-iframe-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.responsive-iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Toast notifications */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 1rem;
+  background: #333;
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Improved mobile tap targets */
+@media (max-width: 640px) {
+  button, 
+  a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Fixed header adjustments on mobile */
+@media (max-width: 768px) {
+  section#product {
+    padding-top: 5rem;
+  }
+}
+
+/* Additional responsive tweaks */
+@media (max-width: 480px) {
+  .text-4xl {
+    font-size: 1.75rem;
+  }
+  
+  .text-2xl {
+    font-size: 1.35rem;
+  }
+}

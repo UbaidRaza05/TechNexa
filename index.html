@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ElectroLux – Home</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ElectroLux – Premium Electronics Store</title>
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container header-inner">
-      <div class="logo">ElectroLux</div>
+      <div class="logo">
+        <button class="mobile-menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <i class="fas fa-bolt"></i>
+        ElectroLux
+      </div>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="shop.html">Shop</a></li>
           <li><a href="cart.html">Cart</a></li>
           <li><a href="checkout.html">Checkout</a></li>
         </ul>
       </nav>
       <div class="header-utilities">
-        <a href="wishlist.html"><i class="far fa-heart"></i></a>
-        <a href="cart.html">
+        <a href="wishlist.html" class="utility-icon">
+          <i class="far fa-heart"></i>
+          <span class="utility-label">Wishlist</span>
+        </a>
+        <a href="cart.html" class="utility-icon">
           <i class="fas fa-shopping-bag"></i>
           <span class="cart-badge">0</span>
+          <span class="utility-label">Cart</span>
         </a>
       </div>
     </div>
@@ -32,31 +45,167 @@
 
   <!-- Hero Section -->
   <section class="hero" id="home">
-    <div class="container">
-      <h1>Experience the Future</h1>
-      <p>Premium gadgets and electronics at unbeatable prices</p>
-      <a href="shop.html" class="btn">Explore Now</a>
-    </div>
-  </section>
-  
-  <!-- Home Content Section -->
-  <section class="home-content" id="home-content">
-    <div class="container">
-      <h2>Welcome to ElectroLux</h2>
-      <p>Your one-stop destination for the latest in electronics. Discover state-of-the-art gadgets, top-of-the-line devices, and exclusive offers.</p>
-    </div>
-  </section>
-  
-  <!-- Featured Products -->
-  <section class="featured" id="featured">
-    <div class="container">
-      <h2>Featured Electronics</h2>
-      <div class="products-grid" id="featured-products">
-        <!-- Featured products will be loaded via JavaScript -->
+    <div class="hero-overlay"></div>
+    <div class="container" data-aos="fade-up">
+      <h1>Experience the Future of Technology</h1>
+      <p>Discover Premium Electronics & Smart Devices</p>
+      <div class="hero-cta">
+        <a href="shop.html" class="btn btn-primary">Shop Now</a>
+        <a href="#featured" class="btn btn-secondary">View Featured</a>
+      </div>
+      <div class="hero-features">
+        <div class="feature-item">
+          <i class="fas fa-truck"></i>
+          <span>Free Shipping</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-shield-alt"></i>
+          <span>2 Year Warranty</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-undo"></i>
+          <span>30-Day Returns</span>
+        </div>
       </div>
     </div>
   </section>
-  
+
+  <!-- Categories Section -->
+  <section class="categories" id="categories">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Shop by Category</h2>
+      <div class="categories-grid">
+        <div class="category-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="category-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Smartphones</h3>
+          <a href="shop.html?category=smartphones" class="category-link">Explore</a>
+        </div>
+        <div class="category-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="category-icon">
+            <i class="fas fa-laptop"></i>
+          </div>
+          <h3>Laptops</h3>
+          <a href="shop.html?category=laptops" class="category-link">Explore</a>
+        </div>
+        <div class="category-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="category-icon">
+            <i class="fas fa-headphones"></i>
+          </div>
+          <h3>Audio</h3>
+          <a href="shop.html?category=audio" class="category-link">Explore</a>
+        </div>
+        <div class="category-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="category-icon">
+            <i class="fas fa-watch"></i>
+          </div>
+          <h3>Wearables</h3>
+          <a href="shop.html?category=wearables" class="category-link">Explore</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured" id="featured">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Trending Products</h2>
+      <div class="featured-controls">
+        <button class="featured-nav prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="featured-nav next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="products-grid" id="featured-products" data-aos="fade-up">
+        <!-- Products loaded via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-content" data-aos="fade-up">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for exclusive deals and tech news</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="trust-badges">
+    <div class="container">
+      <div class="badges-grid">
+        <div class="badge-item" data-aos="fade-up">
+          <i class="fas fa-certificate"></i>
+          <h4>Authentic Products</h4>
+          <p>100% Genuine Products</p>
+        </div>
+        <div class="badge-item" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-lock"></i>
+          <h4>Secure Payments</h4>
+          <p>Protected by SSL</p>
+        </div>
+        <div class="badge-item" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-headset"></i>
+          <h4>24/7 Support</h4>
+          <p>Dedicated Customer Care</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- External Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      offset: 100,
+      once: true
+    });
+  </script>
   <script src="js/script.js"></script>
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      mobileMenuToggle.innerHTML = nav.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+        nav.classList.remove('active');
+        mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      }
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll <= 0) {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        return;
+      }
+
+      header.style.transform = currentScroll > lastScroll 
+        ? 'translateY(-100%)'
+        : 'translateY(0)';
+      header.style.background = 'rgba(255, 255, 255, 0.98)';
+      lastScroll = currentScroll;
+    });
+  </script>
 </body>
 </html>
