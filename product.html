@@ -2,113 +2,403 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="ElectroLux - Product Detail">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ElectroLux – Product Detail</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>ElectroLux – Product</title>
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+          colors: { 
+            primary: "#ff5722", 
+            primaryDark: "#e64a19", 
+            lightbg: "#fff", 
+            darkbg: "#222", 
+            accent: "#555", 
+            bodybg: "#fafafa" 
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <!-- Include the header -->
-  <header>
-    <div class="container header-inner">
-      <div class="logo">ElectroLux</div>
+<body class="bg-bodybg text-accent font-sans">
+  <!-- HEADER / NAVIGATION -->
+  <header class="fixed top-0 left-0 w-full bg-lightbg shadow z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="text-2xl font-bold text-accent">ElectroLux</div>
+      <i class="fas fa-bars text-2xl md:hidden cursor-pointer" onclick="toggleMenu()"></i>
       <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="cart.html">Cart</a></li>
-          <li><a href="checkout.html">Checkout</a></li>
+        <ul id="navList" class="hidden md:flex space-x-6">
+          <li><a href="index.html" class="hover:text-primary transition">Home</a></li>
+          <li><a href="shop.html" class="hover:text-primary transition">Shop</a></li>
+          <li><a href="#about" class="hover:text-primary transition">About Us</a></li>
+          <li><a href="#blog" class="hover:text-primary transition">Blog</a></li>
+          <li><a href="#contact" class="hover:text-primary transition">Contact Us</a></li>
+          <li><a href="cart.html" class="hover:text-primary transition">Cart</a></li>
+          <li><a href="checkout.html" class="hover:text-primary transition">Checkout</a></li>
         </ul>
       </nav>
-      <div class="header-utilities">
-        <a href="wishlist.html"><i class="far fa-heart"></i></a>
-        <a href="cart.html">
-          <i class="fas fa-shopping-bag"></i>
-          <span class="cart-badge">0</span>
+      <div class="flex items-center space-x-4">
+        <button class="border border-primary rounded p-1 text-primary hover:bg-primary hover:text-white transition" onclick="toggleDarkMode()">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="wishlist.html"><i class="far fa-heart text-xl hover:text-primary transition"></i></a>
+        <a href="cart.html" class="relative">
+          <i class="fas fa-shopping-bag text-xl hover:text-primary transition"></i>
+          <span class="absolute -top-2 -right-2 bg-primary text-xs text-white rounded-full px-1" id="cartBadge">0</span>
         </a>
       </div>
     </div>
+    <!-- Mobile Menu -->
+    <nav class="md:hidden">
+      <ul id="navListMobile" class="flex flex-col items-end bg-lightbg shadow p-4 hidden">
+        <li class="py-1"><a href="index.html" class="hover:text-primary transition">Home</a></li>
+        <li class="py-1"><a href="shop.html" class="hover:text-primary transition">Shop</a></li>
+        <li class="py-1"><a href="#about" class="hover:text-primary transition">About Us</a></li>
+        <li class="py-1"><a href="#blog" class="hover:text-primary transition">Blog</a></li>
+        <li class="py-1"><a href="#contact" class="hover:text-primary transition">Contact Us</a></li>
+        <li class="py-1"><a href="cart.html" class="hover:text-primary transition">Cart</a></li>
+        <li class="py-1"><a href="checkout.html" class="hover:text-primary transition">Checkout</a></li>
+      </ul>
+    </nav>
   </header>
-  
-  <!-- Product Detail Section -->
-  <section class="product-detail" id="product">
-    <div class="container">
-      <div class="detail-container">
-        <div class="detail-img">
-          <img id="detail-image" src="" alt="Product Detail">
+
+  <!-- PRODUCT DETAIL SECTION -->
+  <section id="product" class="pt-24 pb-16 px-4 md:py-20 bg-white" data-aos="fade-up">
+    <div class="container mx-auto">
+      <!-- Breadcrumb -->
+      <div class="mb-6 text-sm text-gray-500">
+        <a href="index.html" class="hover:text-primary">Home</a> &gt; 
+        <a href="shop.html" class="hover:text-primary">Shop</a> &gt; 
+        <span id="breadcrumb-product" class="text-primary">Product</span>
+      </div>
+      
+      <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
+        <!-- Product Image Gallery -->
+        <div class="w-full">
+          <div class="mb-4 overflow-hidden rounded">
+            <img id="detail-image" src="" alt="Product Detail" class="w-full h-auto rounded object-cover" loading="lazy">
+          </div>
+          <!-- Thumbnail Gallery -->
+          <div class="grid grid-cols-4 gap-2">
+            <div class="cursor-pointer overflow-hidden rounded">
+              <img src="https://source.unsplash.com/800x600/?electronics,angle1" alt="Product Angle 1" class="w-full h-20 object-cover hover:opacity-75 transition" loading="lazy" onclick="updateMainImage(this.src)">
+            </div>
+            <div class="cursor-pointer overflow-hidden rounded">
+              <img src="https://source.unsplash.com/800x600/?electronics,angle2" alt="Product Angle 2" class="w-full h-20 object-cover hover:opacity-75 transition" loading="lazy" onclick="updateMainImage(this.src)">
+            </div>
+            <div class="cursor-pointer overflow-hidden rounded">
+              <img src="https://source.unsplash.com/800x600/?electronics,angle3" alt="Product Angle 3" class="w-full h-20 object-cover hover:opacity-75 transition" loading="lazy" onclick="updateMainImage(this.src)">
+            </div>
+            <div class="cursor-pointer overflow-hidden rounded">
+              <img src="https://source.unsplash.com/800x600/?electronics,angle4" alt="Product Angle 4" class="w-full h-20 object-cover hover:opacity-75 transition" loading="lazy" onclick="updateMainImage(this.src)">
+            </div>
+          </div>
         </div>
-        <div class="detail-info">
-          <h1 id="detail-name">Product Name</h1>
-          <p class="price" id="detail-price">$0.00</p>
-          <p class="description" id="detail-description">Product details will appear here.</p>
-          <div class="btn-group">
-            <button class="btn add-cart" onclick="handleBuy()">Add to Cart</button>
-            <button class="btn buy-now" onclick="buyNow()">Buy Now</button>
-            <i class="far fa-heart wishlist-icon" id="wishlist-icon" onclick="toggleWishlist()"></i>
+        
+        <!-- Product Details -->
+        <div class="space-y-4 md:space-y-6">
+          <h1 id="detail-name" class="text-2xl md:text-4xl font-bold"></h1>
+          
+          <!-- Ratings -->
+          <div class="flex items-center">
+            <div class="flex text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <span class="ml-2 text-gray-600">(42 reviews)</span>
           </div>
-          <!-- Product Media Section -->
-          <div class="product-media">
-            <h2>Product Media</h2>
-            <div class="media-container">
-              <div class="media-item">
-                <img src="https://source.unsplash.com/800x600/?electronics,detail" alt="High Quality Image">
-              </div>
-              <div class="media-item">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-              </div>
-              <div class="media-item">
-                <img src="https://via.placeholder.com/800x600?text=360°+View" alt="360 View">
-              </div>
+          
+          <p id="detail-price" class="text-2xl text-primary font-semibold"></p>
+          
+          <!-- Availability -->
+          <div class="text-green-600 font-medium">
+            <i class="fas fa-check-circle mr-1"></i> In Stock
+          </div>
+          
+          <p id="detail-description" class="text-gray-600"></p>
+          
+          <!-- Color Options -->
+          <div>
+            <h3 class="font-medium mb-2">Color:</h3>
+            <div class="flex space-x-2">
+              <button class="w-8 h-8 rounded-full bg-black border-2 border-white shadow-md hover:scale-110 transition"></button>
+              <button class="w-8 h-8 rounded-full bg-white border-2 border-gray-300 shadow-md hover:scale-110 transition"></button>
+              <button class="w-8 h-8 rounded-full bg-red-500 border-2 border-white shadow-md hover:scale-110 transition"></button>
+              <button class="w-8 h-8 rounded-full bg-blue-500 border-2 border-white shadow-md hover:scale-110 transition"></button>
             </div>
           </div>
-          <!-- Reviews & Ratings Section -->
-          <div class="reviews">
-            <h2>Customer Reviews</h2>
-            <div class="review">
-              <div class="review-header">
-                <span class="name">Jane Doe</span>
-                <span class="rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
-                </span>
-              </div>
-              <div class="review-body">
-                Great product! The performance is amazing and the build quality is top-notch.
-              </div>
+          
+          <!-- Quantity Selector -->
+          <div class="flex items-center space-x-3">
+            <h3 class="font-medium">Quantity:</h3>
+            <div class="flex border border-gray-300 rounded-lg">
+              <button class="px-2 py-1 text-lg" onclick="decrementQuantity()">-</button>
+              <input type="number" id="quantity" value="1" min="1" class="w-12 text-center border-x border-gray-300">
+              <button class="px-2 py-1 text-lg" onclick="incrementQuantity()">+</button>
             </div>
-            <div class="review">
-              <div class="review-header">
-                <span class="name">John Smith</span>
-                <span class="rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-                  <i class="far fa-star"></i>
-                </span>
-              </div>
-              <div class="review-body">
-                Satisfied with the purchase. It exceeded my expectations in terms of performance.
-              </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap gap-4 mt-6">
+            <button class="bg-primary text-white py-2 px-6 rounded-full hover:bg-primaryDark transition md:text-lg flex-grow md:flex-grow-0" onclick="handleBuy()">
+              <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+            </button>
+            <button class="border-2 border-primary text-primary py-2 px-6 rounded-full hover:bg-primary hover:text-white transition md:text-lg flex-grow md:flex-grow-0" onclick="buyNow()">
+              <i class="fas fa-bolt mr-2"></i>Buy Now
+            </button>
+            <button class="p-3 border-2 border-gray-300 rounded-full hover:border-primary transition" onclick="toggleWishlist()">
+              <i id="wishlist-icon" class="far fa-heart text-xl"></i>
+            </button>
+            <button class="p-3 border-2 border-gray-300 rounded-full hover:border-primary transition">
+              <i class="fas fa-share-alt text-xl"></i>
+            </button>
+          </div>
+          
+          <!-- Product Specifications -->
+          <div class="mt-8 border-t border-gray-200 pt-6">
+            <h2 class="text-xl font-semibold mb-4">Key Specifications</h2>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                <span>Latest model with advanced technology</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                <span>Long-lasting battery (up to 12 hours)</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                <span>Lightweight and durable design</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                <span>Premium quality components</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Product Media Section -->
+      <div class="mt-12 border-t border-gray-200 pt-8">
+        <h2 class="text-2xl font-semibold mb-6 text-center">Product Media</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="overflow-hidden rounded shadow-lg">
+            <img src="https://source.unsplash.com/800x600/?electronics,detail" alt="High Quality Image" class="w-full h-48 object-cover transform hover:scale-105 transition duration-500 ease-in-out" loading="lazy">
+            <div class="p-4 bg-gray-50">
+              <h3 class="font-medium">Product Details</h3>
+            </div>
+          </div>
+          <div class="overflow-hidden rounded shadow-lg">
+            <div class="relative pt-[56.25%]">
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen class="absolute inset-0 w-full h-full"></iframe>
+            </div>
+            <div class="p-4 bg-gray-50">
+              <h3 class="font-medium">Product Video</h3>
+            </div>
+          </div>
+          <div class="overflow-hidden rounded shadow-lg">
+            <img src="https://via.placeholder.com/800x600?text=360°+View" alt="360 View" class="w-full h-48 object-cover transform hover:scale-105 transition duration-500 ease-in-out" loading="lazy">
+            <div class="p-4 bg-gray-50">
+              <h3 class="font-medium">360° View</h3>
             </div>
           </div>
         </div>
       </div>
-      <!-- Recommended Products Section -->
-      <div class="recommended" id="recommended">
-        <div class="container">
-          <h2>Recommended For You</h2>
-          <div class="recommended-grid" id="recommended-products">
-            <!-- Recommended products will be loaded via JavaScript -->
+      
+      <!-- Testimonials Slider -->
+      <div class="mt-12 border-t border-gray-200 pt-8" data-aos="fade-up">
+        <h2 class="text-2xl font-semibold mb-6 text-center">What Our Customers Say</h2>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide p-6 bg-gray-50 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <img src="https://source.unsplash.com/100x100/?portrait" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                <div>
+                  <p class="font-semibold">Jane Doe</p>
+                  <div class="flex text-yellow-400 text-sm">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="italic text-gray-700 mb-2">Great product! The performance is amazing and the build quality is top-notch. I've been using it for three months now and couldn't be happier.</p>
+            </div>
+            <div class="swiper-slide p-6 bg-gray-50 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <img src="https://source.unsplash.com/101x101/?portrait" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                <div>
+                  <p class="font-semibold">John Smith</p>
+                  <div class="flex text-yellow-400 text-sm">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="italic text-gray-700 mb-2">Exceeded my expectations. Truly a game-changer in electronics. The customer service was exceptional too!</p>
+            </div>
+            <div class="swiper-slide p-6 bg-gray-50 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <img src="https://source.unsplash.com/102x102/?portrait" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                <div>
+                  <p class="font-semibold">Alex Johnson</p>
+                  <div class="flex text-yellow-400 text-sm">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="italic text-gray-700 mb-2">Reliable, stylish, and efficient. I highly recommend ElectroLux! The design is sleek and it fits perfectly with my setup.</p>
+            </div>
           </div>
+          <div class="swiper-pagination mt-6"></div>
         </div>
+      </div>
+      
+      <!-- Recommended Products -->
+      <div id="recommended" class="mt-16" data-aos="fade-up">
+        <h2 class="text-2xl font-semibold text-center mb-8">Recommended For You</h2>
+        <div id="recommended-products" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
       </div>
     </div>
   </section>
-  
+
+  <!-- FOOTER -->
+  <footer class="bg-darkbg text-gray-300 py-12" data-aos="fade-up">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">ElectroLux</h3>
+          <p class="text-sm mb-4">Your one-stop destination for premium electronics and cutting-edge gadgets.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-xl hover:text-primary transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-xl hover:text-primary transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-xl hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-xl hover:text-primary transition"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Shop</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-primary transition">New Arrivals</a></li>
+            <li><a href="#" class="hover:text-primary transition">Best Sellers</a></li>
+            <li><a href="#" class="hover:text-primary transition">Deals & Offers</a></li>
+            <li><a href="#" class="hover:text-primary transition">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-primary transition">Contact Us</a></li>
+            <li><a href="#" class="hover:text-primary transition">Track Order</a></li>
+            <li><a href="#" class="hover:text-primary transition">Return Policy</a></li>
+            <li><a href="#" class="hover:text-primary transition">Shipping Info</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+          <p class="text-sm mb-4">Stay updated with our latest releases and offers.</p>
+          <form class="flex flex-col sm:flex-row">
+            <input type="email" placeholder="Your email" class="px-4 py-2 w-full mb-2 sm:mb-0 rounded-l sm:rounded-r-none">
+            <button class="bg-primary hover:bg-primaryDark px-4 py-2 rounded-r sm:rounded-l-none">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p>&copy; 2025 ElectroLux. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" onclick="scrollToTop()" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full text-xl hover:bg-primaryDark transition hidden">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
   <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id') || 1; // default to 1 if no id is provided
+      showProduct(Number(productId));
+      
+      // Initialize Swiper
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+        },
+        autoplay: {
+          delay: 3000,
+        },
+      });
+      
+      // Image gallery functionality
+      window.updateMainImage = function(src) {
+        document.getElementById('detail-image').src = src;
+      };
+      
+      // Quantity selector functions
+      window.incrementQuantity = function() {
+        const qtyInput = document.getElementById('quantity');
+        qtyInput.value = parseInt(qtyInput.value) + 1;
+      };
+      
+      window.decrementQuantity = function() {
+        const qtyInput = document.getElementById('quantity');
+        if (parseInt(qtyInput.value) > 1) {
+          qtyInput.value = parseInt(qtyInput.value) - 1;
+        }
+      };
+      
+      // Initialize AOS animation library
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+    });
+  </script>
 </body>
 </html>
